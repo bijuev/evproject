@@ -9,11 +9,19 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, logout
-from .models import Location, LocationSearch
-from .serializers import LocationSerializer, LocationSearchSerializer
+from .models import Location, LocationSearch, UserProfile
+from .serializers import LocationSerializer, LocationSearchSerializer, UserProfileSerializer
 from .forms import LocationForm
 
 User = get_user_model()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def profile_view(request):
+    profile = request.user.profile
+    serializer = UserProfileSerializer(profile)
+    return Response(serializer.data)
 
 
 class LocationSearchApiView(generics.ListAPIView):
