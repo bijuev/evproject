@@ -145,7 +145,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
+
+        'hosts': 'http://localhost:9200'
     },
 }
 

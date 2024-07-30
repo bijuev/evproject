@@ -1,17 +1,42 @@
+from django.shortcuts import render
+from django.views import View
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .models import Trip, QuickTips
-from .serializers import TripSerializer, QuickTipsSerializer
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .documents import QuickTipsDocument
+from .models import QuickTips, Trip
+from .serializers import QuickTipsSerializer, TripSerializer
+
+
+class QuickTipsSearchHtmlView(View):
+    def get(self, request):
+        query = request.GET.get('q', '')
+        search_results = []
+        if query:
+            search = QuickTipsDocument.search().query(
+                "bool",
+                should=[
+                    {"match": {"title": {"query": query, "fuzziness": "AUTO"}}},
+                    {"match": {"content": {"query": query, "fuzziness": "AUTO"}}},
+                    {"match_phrase_prefix": {"title": query}},
+                    {"match_phrase_prefix": {"content": query}}
+                ],
+                minimum_should_match=1
+            )
+            search_results = search.to_queryset()
+        return render(request, 'quicktips_search.html', {'search_results': search_results, 'query': query})
 
 
 class QuickTipsSearchView(APIView):
     def get(self, request):
         query = request.query_params.get('q', None)
         if query:
-            search = QuickTipsDocument.search().query("match", content=query)
+            search = QuickTipsDocument.search().query("match", content={
+                "query": query,
+                "fuzziness": "AUTO"
+            })
             results = search.execute()
             serializer = QuickTipsSerializer(results.hits, many=True)
             return Response(serializer.data)
