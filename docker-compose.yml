@@ -1,0 +1,57 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - migrate
+      - elasticsearch
+    environment:
+      - DEBUG=1
+      - ALLOWED_HOSTS=0.0.0.0,localhost
+    networks:
+      - app-network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: evdatabase
+      POSTGRES_USER: evuser
+      POSTGRES_PASSWORD: evpassword
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  migrate:
+    build: .
+    command: python manage.py migrate
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+
+volumes:
+  esdata:
+
+networks:
+  app-network:

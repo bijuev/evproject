@@ -11,5 +11,5 @@ class QuickTipsAdmin(ModelAdmin):
 
 @admin.register(Trip)
 class TripAdmin(ModelAdmin):
-    list_display = ('trip_name', 'user', 'start_location', 'end_location', 'date_created')
-    list_filter = ('user', 'start_location', 'end_location', 'date_created')
+    list_display = ('trip_name', 'user', 'origin', 'destination', 'date_created')
+    list_filter = ('user', 'origin', 'destination', 'date_created')

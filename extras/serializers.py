@@ -12,8 +12,10 @@ class QuickTipsSerializer(serializers.ModelSerializer):
 
 class TripSerializer(serializers.ModelSerializer):
     added_by = serializers.ReadOnlyField(source='user.username')
+    origin = serializers.StringRelatedField()
+    destination = serializers.StringRelatedField()
 
     class Meta:
         model = Trip
-        fields = ['id', 'user', 'trip_name', 'start_location', 'end_location', 'notes', 'date_created']
+        fields = ['id', 'user', 'trip_name', 'origin', 'destination', 'notes', 'date_created', 'added_by']
         read_only_fields = ['user', 'date_created']

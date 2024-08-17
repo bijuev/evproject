@@ -5,8 +5,8 @@ from core.models import Location
 
 class Trip(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='trips')
-    start_location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='start_trips')
-    end_location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='end_trips')
+    origin = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='start_trips')
+    destination = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, related_name='end_trips')
     date_created = models.DateTimeField(auto_now_add=True)
     trip_name = models.CharField(max_length=100)
     notes = models.TextField(blank=True, null=True)

@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from elasticsearch_dsl.query import MultiMatch, Bool, Wildcard
 
 from .documents import QuickTipsDocument
 from .models import QuickTips, Trip
@@ -15,16 +16,18 @@ class QuickTipsSearchHtmlView(View):
         query = request.GET.get('q', '')
         search_results = []
         if query:
-            search = QuickTipsDocument.search().query(
-                "bool",
-                should=[
-                    {"match": {"title": {"query": query, "fuzziness": "AUTO"}}},
-                    {"match": {"content": {"query": query, "fuzziness": "AUTO"}}},
-                    {"match_phrase_prefix": {"title": query}},
-                    {"match_phrase_prefix": {"content": query}}
-                ],
-                minimum_should_match=1
+            multi_match_query = MultiMatch(
+                query=query,
+                fields=["title^3", "content"],
+                type="best_fields",
+                fuzziness="AUTO"
             )
+            wildcard_query = Bool(should=[
+                Wildcard(title={"value": f"*{query}*", "boost": 2}),
+                Wildcard(content={"value": f"*{query}*"})
+            ])
+            combined_query = Bool(should=[multi_match_query, wildcard_query])
+            search = QuickTipsDocument.search().query(combined_query)
             search_results = search.to_queryset()
         return render(request, 'quicktips_search.html', {'search_results': search_results, 'query': query})
 
