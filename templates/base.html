@@ -1,35 +1,85 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Quick Tips{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles can go here */
-    </style>
-    {% block extra_head %}
-    {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Evspot">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#0059a5">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#0059a5">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0059a5">
+    <title>Evspot</title>
+    <link rel="icon" href="{% static 'assets/images/favicon.png' %}">
+    <!-- Styles started -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <!-- Styles ended -->
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <header class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto">
-            <h1 class="text-xl font-bold">Quick Tips</h1>
+
+<body>
+    <!-- Mobile Nav Started -->
+    <div class="bk-mob-nav-mask js-mob-tog"></div>
+    <div class="bk-mob-nav d-lg-none">
+        <div class="contain-bk">
+            <nav class="list-bk" id="mob-navs">
+                <ul class="js-mob-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#find-near-plugs">Find Near Plugs</a></li>
+                    <li><a href="#plan-a-trip">Plan a Trip</a></li>
+                    <li><a href="#add-a-new-plug">Real Time Plugs</a></li>
+                    <li><a href="#">Quick fix</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Mobile Nav Ended -->
+    <!-- Header Started -->
+    <header class="bk-header" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container d-flex align-items-center">
+            <div class="logo-bk align-self-center">
+                <a href="index.html" class="obj">
+                    <img src="{% static 'assets/images/logo.svg' %}" alt="logo">
+                </a>
+            </div>
+            <nav class="d-none d-lg-flex ms-auto">
+                <ul class="d-flex" id="navs">
+                    <li><a href="{% url 'home_page' %}">Home</a></li>
+                    <li><a href="#find-near-plugs">Find Near Plugs</a></li>
+                    <li><a href="#plan-a-trip">Plan a Trip</a></li>
+                    <li><a href="#add-a-new-plug">Real Time Plugs</a></li>
+                    <li><a href="#">Quick fix</a></li>
+                </ul>
+            </nav>
+            <div class="right-bk ms-auto ms-lg-0 d-none d-sm-block">
+                <a href="#" class="btn btn-secondary">Go to portal</a>
+            </div>
+            <div class="d-flex align-items-center justify-content-end ms-auto ms-sm-0">
+                <button type="button" class="bk-mob-tog js-mob-tog d-lg-none">
+                    <span class="bk-burger-menu"></span><span>Menu</span>
+                </button>
+            </div>
         </div>
     </header>
-
-    <main class="container mx-auto mt-4">
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <footer class="bg-gray-800 text-white p-4 mt-4">
-        <div class="container mx-auto">
-            <p>&copy; 2024 Quick Tips</p>
-        </div>
-    </footer>
-
-    {% block extra_script %}
+    <!-- Header Ended -->
+    {% block content%}
     {% endblock %}
+    <!-- Scripts started -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos-master/dist/aos.js' %}"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <!-- Scripts ended -->
 </body>
+
 </html>

@@ -75,6 +75,10 @@ def home(request):
     return render(request, 'index.html', {})
 
 
+def home_page(request):
+    return render(request, 'home.html', {})
+
+
 @api_view(['POST'])
 def login_view(request):
     username = request.data.get('username')

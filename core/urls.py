@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import LocationApiView, home, LocationCreateView, LocationCreateApiView, LocationUpdateApiView,\
     LocationDeleteApiView, LocationDetailApiView, LocationSearchApiView, LocationSearchCreateApiView, \
-    login_view, logout_view, profile_view
+    login_view, logout_view, profile_view, home_page
 
 urlpatterns = [
     path('api/location/', LocationApiView.as_view()),
@@ -17,5 +17,6 @@ urlpatterns = [
     path('api/profile/', profile_view, name='api-profile'),
     path('api/login/', login_view, name='login'),
     path('api/logout/', logout_view, name='logout'),
-    path('', home, name='home')
+    path('', home, name='home'),
+    path('home_page/', home_page, name='home_page'),
 ]

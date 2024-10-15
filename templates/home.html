@@ -1,0 +1,100 @@
+{% load static %}
+{% block content %}
+<!-- Wrapper Started -->
+<div class="bk-wrapper">
+    <div class="bk-ui">
+        <section class="bk-banner">
+            <div class="bg">
+                <img src="{% static 'assets/images/banner.jpg' %}" alt="banner">
+            </div>
+            <div class="banner-cnt">
+                <div class="container">
+                    <div class="max-600" data-aos="fade-up" data-aos-duration="2000">
+                        <h1>Charge Up Your Journey</h1>
+                        <ul>
+                            <li>Find the best EV charging spots near you</li>
+                            <li>Plan your routes with ease</li>
+                            <li>Stay powered, stay moving</li>
+                        </ul>
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="btn btn-secondary me-3">Go to portal</a>
+                            <a href="#" class="btn">Go to Quick fix</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="go-to-down">
+                <svg width="20" height="40" viewBox="0 0 20 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.8494 40L19.4277 30.3012C19.7892 29.9398 19.7892 29.3976 19.4277 29.0361C19.0663 28.6747 18.5241 28.6747 18.1627 29.0361L10.753 36.506V0.903614C10.753 0.421687 10.3313 0 9.8494 0C9.36747 0 8.94578 0.421687 8.94578 0.903614V36.506L1.53615 29.0361C1.1747 28.6747 0.63253 28.6747 0.271084 29.0361C-0.0903614 29.3976 -0.0903614 29.9398 0.271084 30.3012L9.8494 40Z"
+                        fill="#162582" />
+                </svg>
+            </button>
+        </section>
+        <section class="services common-spacing">
+            <div class="content-block" id="find-near-plugs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500">
+                            <h2 class="mb-3">Discover The Right Charging Spot</h2>
+                            <p class="mb-4">Finding a charging station should be easy and stress-free. Our
+                                interactive map helps you locate nearby EV charging points quickly. Filter by
+                                availability to find exactly what you need. Save your favorite spots for future
+                                reference. With EVSPOT, powering up is just a click away. </p>
+                            <a href="#" class="btn">Go to portal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-sec" data-aos="fade-up" data-aos-duration="1000">
+                    <figure>
+                        <img src="{% static 'assets/images/img2.jpg' %}" alt="Find Near Plugs" />
+                    </figure>
+                </div>
+            </div>
+        </section>
+        <section class="services">
+            <div class="content-block" id="plan-a-trip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500">
+                            <h2 class="mb-3">Plan Your Routes with Confidence</h2>
+                            <p class="mb-4">Never worry about running out of charge again. Use our route planner to
+                                map out your trips and ensure you have access to charging stations along the way.
+                                Adjust your plans based on charger availability and real-time updates. Enjoy a
+                                smoother, more reliable driving experience. Let us help you travel with peace of
+                                mind.</p>
+                            <a href="#" class="btn">Go to portal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-sec" data-aos="fade-up" data-aos-duration="1000">
+                    <figure>
+                        <img src="{% static 'assets/images/img1.jpg' %}" alt="plan a trip" />
+                    </figure>
+                </div>
+            </div>
+        </section>
+        <section class="services common-spacing">
+            <div class="content-block" id="add-a-new-plug">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500">
+                            <h2 class="mb-3">Stay Updated with Real-Time Information</h2>
+                            <p class="mb-4">Join our community of users and contribute by adding new charging spots
+                                to our database. Your input helps others find their way. Get real-time information
+                                about availability and user reviews to make informed choices. With EVSPOT, stay
+                                connected and informed.</p>
+                            <a href="#" class="btn">Go to portal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-sec" data-aos="fade-up" data-aos-duration="1000">
+                    <figure>
+                        <img src="{% static 'assets/images/img3.jpg' %}" alt="Real Time Plugs" />
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock%}
