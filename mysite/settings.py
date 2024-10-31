@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -56,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.DisableCOOPMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB', 'evdatabase'),
         'USER': os.getenv('POSTGRES_USER', 'evuser'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'evpassword'),
-        'HOST': 'db',  # Docker service name
+        'HOST': 'db', 
         'PORT': '5432',
     }
 }
